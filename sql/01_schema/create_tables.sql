@@ -145,7 +145,7 @@ CREATE TABLE ShipmentTrackingHistory (
     location VARCHAR(255)
 );
 
--- Create Indexes on Foreign Keys for better query performance (relates to Phase 2, Task 7)
+-- Create Indexes on Foreign Keys for better query performance
 CREATE INDEX ON Orders (customer_id);
 CREATE INDEX ON OrderItems (order_id);
 CREATE INDEX ON OrderItems (product_id);

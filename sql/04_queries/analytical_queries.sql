@@ -1,4 +1,4 @@
--- 2. At least 4 select queries.
+-- Analytical queries.
 
 -- Query 1 (JOIN, GROUP BY, ORDER BY, SUM)
 -- Find the Top 5 Most Valuable Customers (VIPs) by total amount spent.
@@ -78,3 +78,4 @@ JOIN Products p ON oi.product_id = p.product_id
 JOIN Shipments s ON o.order_id = s.order_id
 JOIN ShippingCarriers sc ON s.carrier_id = s.carrier_id
 WHERE o.order_id = '1283686e-d496-42b8-8cfe-2627a0abcc19';
+

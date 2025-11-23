@@ -1,4 +1,4 @@
--- TASK 6 – BONUS / BACKUP TRIGGER (Extra example – very impressive!)
+-- TRANSACTION & TRIGGER
 -- Business rule:
 -- 1. Once a product is active (active_flag = TRUE), its price can never be lowered.
 -- 2. Once a product has been sold in a paid order, its price can never be changed at all.
@@ -10,14 +10,14 @@ DECLARE
 BEGIN
     IF TG_OP = 'UPDATE' THEN
 
-        -- Rule 1: Active products cannot have their price decreased
+        -- Active products cannot have their price decreased
         IF OLD.active_flag = TRUE AND NEW.unit_price < OLD.unit_price THEN
             RAISE EXCEPTION 'Price decrease forbidden for active product % (%)! Old: $% → $%',
                 OLD.sku, OLD.product_id, OLD.unit_price, NEW.unit_price
             USING HINT = 'You may only increase or keep the price the same for active products.';
         END IF;
 
-        -- Rule 2: Products that were ever sold in a paid order cannot change price change
+        -- Products that were ever sold in a paid order cannot change price change
         IF EXISTS (
             SELECT 1
             FROM OrderItems oi
@@ -43,19 +43,19 @@ CREATE TRIGGER trigger_prevent_price_drop
     EXECUTE FUNCTION prevent_product_price_decrease();
 
 
--- VERIFICATION / DEMONSTRATION QUERIES (run these and take screenshots)
+-- TEST TRANSACTION
 
 -- 1. Show current price of a product that is active (you can be SKU-112233 or any other )
 SELECT sku, name, unit_price, active_flag
 FROM Products
 WHERE sku = 'SKU-112233';
 
--- 2. TRY TO DECREASE PRICE → SHOULD FAIL
+-- 2. TRY TO DECREASE PRICE -> SHOULD FAIL
 UPDATE Products
 SET unit_price = 5.99
 WHERE sku = 'SKU-112233';
 
--- 3. TRY TO INCREASE PRICE → SHOULD SUCCEED
+-- 3. TRY TO INCREASE PRICE -> SHOULD SUCCEED
 UPDATE Products
 SET unit_price = 29.99
 WHERE sku = 'SKU-112233';

@@ -21,5 +21,5 @@
 -- Level 3 tables can be loaded now
 \COPY ShipmentTrackingHistory FROM 'ShipmentTrackingHistory.csv' WITH (FORMAT CSV, HEADER);
 
--- Announce completion
+-- Completion
 \qecho 'Data loading process completed.'

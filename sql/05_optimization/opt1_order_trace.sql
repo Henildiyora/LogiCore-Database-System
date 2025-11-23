@@ -1,18 +1,17 @@
--- TASK 7: QUERY OPTIMIZATION 1
--- Query: "Full Order Trace" from Task 5.
+-- QUERY OPTIMIZATION 1
+-- Query: "Full Order Trace".
 -- Problem: The query is slow when the database grows because it must
 --          scan the entire 'Shipments' table to find the matching 'order_id'.
 -- Solution: Create an index on the 'Shipments(order_id)' column.
 
 
-
--- STEP 1: CREATE THE "PROBLEM"
+-- CREATE THE PROBLEM
 -- We will delete the index to simulate a poorly performing database.
 DROP INDEX IF EXISTS shipments_order_id_idx;
 
 
--- STEP 2: SHOW THE "BEFORE" PLAN (THE PROBLEM)
--- You will see a "Seq Scan" (Sequential Scan) on the 'Shipments' table.
+-- SHOW THE BEFORE PLAN (THE PROBLEM)
+-- You will see a Sequential Scan on the 'Shipments' table.
 EXPLAIN ANALYZE
 SELECT
     c.name AS customer_name,
@@ -29,13 +28,12 @@ JOIN ShippingCarriers sc ON s.carrier_id = sc.carrier_id
 WHERE o.order_id = '1283686e-d496-42b8-8cfe-2627a0abcc19';
 
 
--- STEP 3: APPLY THE "FIX" (OUR IMPROVEMENT)
+-- APPLY THE FIX (OUR IMPROVEMENT)
 -- This is our proposed indexing strategy.
 CREATE INDEX shipments_order_id_idx ON Shipments (order_id);
 
 
-
--- STEP 4: SHOW THE "AFTER" PLAN (THE SOLUTION)
+-- SHOW THE AFTER PLAN (THE SOLUTION)
 -- Now, the Execution Plan will show a fast "Index Scan".
 -- Take a screenshot and compare the new, lower 'cost' and 'time'.
 EXPLAIN ANALYZE

@@ -1,4 +1,4 @@
--- 1. 1-2 queries for inserting, deleting, and updating.
+-- queries for inserting, deleting, and updating.
 
 -- Query 1 (INSERT 1)
 -- Add a new customer who just registered.
@@ -20,7 +20,7 @@ VALUES (
 SELECT * FROM Customers
 WHERE email = 'ABCNewCustomer@example.com';
 
--- Query 2 (INSERT 2)
+-- Query 2 (INSERT)
 -- Add a new product to the company's product catalog.
 INSERT INTO Products (product_id, sku, name, description, category, unit_price, weight_kg, dimensions_cm, active_flag, created_at)
 VALUES (
@@ -39,7 +39,7 @@ VALUES (
 SELECT * FROM Products
 WHERE sku = 'SKU-112233';
  
--- Query 3 (UPDATE 1)
+-- Query 3 (UPDATE)
 -- A shipment has been delivered. Update its status and actual arrival time.
 UPDATE Shipments 
 SET 
@@ -50,7 +50,7 @@ WHERE shipment_id = 'e095ace2-417b-4c54-af88-00faa335ba4e';
 SELECT * FROM Shipments
 WHERE shipment_id = 'e095ace2-417b-4c54-af88-00faa335ba4e';
 
--- Query 4 (UPDATE 2)
+-- Query 4 (UPDATE)
 -- A customer has moved. Update their address.
 UPDATE Customers
 SET 
@@ -63,7 +63,7 @@ WHERE customer_id = '90510ac2-fa10-4be1-b811-54257900ff22';
 SELECT * FROM Customers
 WHERE customer_id = '90510ac2-fa10-4be1-b811-54257900ff22';
 
--- Query 5 (DELETE 1)
+-- Query 5 (DELETE)
 -- A customer cancelled an item from their order before it was processed.
 DELETE FROM OrderItems
 WHERE order_item_id = '1fbd41a2-0f35-42d4-9e29-88638a4e51ec';
@@ -71,7 +71,7 @@ WHERE order_item_id = '1fbd41a2-0f35-42d4-9e29-88638a4e51ec';
 SELECT * FROM OrderItems
 WHERE order_item_id = '1fbd41a2-0f35-42d4-9e29-88638a4e51ec';
 
--- Query 6 (DELETE 2)
+-- Query 6 (DELETE)
 -- A duplicate tracking event was entered by mistake. Remove the erroneous record.
 DELETE FROM ShipmentTrackingHistory
 WHERE tracking_history_id = 'c7171863-4af1-451d-8d1f-476f89f6abb2';
