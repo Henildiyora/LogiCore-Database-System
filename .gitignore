@@ -205,3 +205,13 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# dataset
+data/
+
+# Files and folders
+Phase2_task1/
+phase2_task2/
+Phase2_task3/
+project_instructions/
+SQL_files/
