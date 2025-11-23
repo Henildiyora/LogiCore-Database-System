@@ -26,7 +26,7 @@
 * **Visualization:** Integrated with **Tableau Public** to provide a real-time dashboard for warehouse capacity, sales trends, and shipping metrics.
 
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```text
 LogiCore/
