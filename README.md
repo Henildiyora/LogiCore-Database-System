@@ -62,16 +62,23 @@ We acted as Database Administrators to identify bottlenecks using `EXPLAIN ANALY
 | Customer Search     | Sequential Scan          | Index on Customers(name)       | Bitmap Index Scan           |
 | Inventory Join      | Full Table Scan          | Index on Inventory(product_id) | Optimized Join Strategy     |
 
+
 ### How to Run
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/Henildiyora/LogiCore.git
    ```
 2. **Setup Database:**
+
    * Run `sql/01_schema/create_tables.sql` to build the 12-table schema.
    * Import data using your preferred method (or the scripts in `01_schema`).
+
 3. **Deploy Logic:**
+
    * Execute scripts in `sql/02_procedures/` and `sql/03_triggers/` to install the business logic.
+
 4. **Test:**
+
    * Run queries in `sql/04_queries/` to verify data retrieval.
    * Run optimization tests in `sql/05_optimization/` to see performance gains.
